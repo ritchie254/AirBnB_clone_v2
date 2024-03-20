@@ -3,8 +3,8 @@
 import uuid
 import models
 from datetime import datetime
-from mysqlalchemy.ext.declarative import declarative_base
-from mysqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, DateTime
 from os import getenv
 
 time = '%Y-%m-%dT%H:%M:%S.%f'
