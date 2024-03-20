@@ -17,9 +17,6 @@ from sqlalchemy.orm import sessionmaker
 
 class DBStorage:
     """Represents a database storage engine.
-    Attributes:
-        __engine (sqlalchemy.Engine): The working SQLAlchemy engine.
-        __session (sqlalchemy.Session): The working SQLAlchemy session.
     """
 
     __engine = None
@@ -37,10 +34,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """Query on the curret database session all objects of the given class.
-        If cls is None, queries all types of objects.
-        Return:
-            Dict of queried classes in the format <class name>.<obj id> = obj.
+        """Query on the curret database session all objects of the given class
         """
         if cls is None:
             objs = self.__session.query(State).all()
@@ -69,7 +63,7 @@ class DBStorage:
             self.__session.delete(obj)
 
     def reload(self):
-        """Create all tables in the database and initialize a new session."""
+        """Create all tables in the database"""
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
@@ -77,5 +71,5 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        """Close the working SQLAlchemy session."""
+        """Close SQLAlchemy session."""
         self.__session.close()
