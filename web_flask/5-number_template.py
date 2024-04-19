@@ -56,7 +56,7 @@ def is_number(n):
 def rendering(n):
     """rendering a html page from templates folder"""
     if isinstance(n, int):
-        return render_template("5-number.html", n)
+        return render_template("5-number.html", n=n)
 
 
 if __name__ == "__main__":
